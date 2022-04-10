@@ -1,5 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import {
+  initializeApp,
   getFirestore,
   collection,
   addDoc,
@@ -9,10 +9,8 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
-} from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
-import {
-  getAuth
-} from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+  getAuth,
+} from "./firebase-imports.js";
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
