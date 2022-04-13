@@ -1,11 +1,17 @@
 // import { createPost } from "../lib/firestore.js";
-import { singOut } from "../lib/auth.js";
+// import { singOut } from "../lib/auth.js";
 import { onNavigate } from "../main.js";
 import { savePost } from "../lib/firestore.js";
 import ReadPost from "./post/ReadPost.js";
 // import { menu } from "./menu.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+
 
 export const timeline = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
+ 
   const content = document.createElement("section");
   content.setAttribute("class", "content-timeline");
 
@@ -16,9 +22,10 @@ export const timeline = () => {
 
   const TimelineHeader = document.createElement("header");
   TimelineHeader.setAttribute("class", "timeline-header");
+
   const headerLogo = document.createElement("img");
   headerLogo.setAttribute("class", "solovino-logo-timeline");
-  headerLogo.setAttribute("src", "./Resourses/solovino movil_Mesa de trabajo 1.png");
+  headerLogo.setAttribute("src", "../Resourses/Logos/solovino black movil.png");
 
   const menuNav = document.createElement("img"); 
   menuNav.setAttribute("class","menu-nav")
@@ -30,19 +37,17 @@ export const timeline = () => {
     // menu();
   });
 
-
-  const headerSingOut = document.createElement("p");
-  headerSingOut.setAttribute("type", "text");
-  headerSingOut.setAttribute("class", "sing-out");
-  headerSingOut.textContent = "Cerrar Sesión";
-  headerSingOut.addEventListener("click", () => {
-    singOut();
-  });
-
-  TimelineHeader.append(headerLogo,menuNav, headerSingOut,); ////////
+  TimelineHeader.append(headerLogo,menuNav,); ////////
 
   const postContent = document.createElement("section");
   postContent.setAttribute("id", "postContent");
+
+  const PostedImgUser = document.createElement("img");
+  PostedImgUser.setAttribute("class", "Post_ImgUser");
+  PostedImgUser.setAttribute("src", user.photoURL);
+
+
+
   const post = document.createElement("textarea");
   post.setAttribute("placeholder", "Escribe algo...");
   post.setAttribute("id", "post");
@@ -51,7 +56,6 @@ export const timeline = () => {
 
   const buttonToPost = document.createElement("button");
   buttonToPost.textContent = "Publicar";
-  buttonToPost.setAttribute("type", "submit");
   buttonToPost.setAttribute("id", "toPost");
   buttonToPost.addEventListener("click", () => {
     //   createPost();
@@ -69,20 +73,22 @@ export const timeline = () => {
 
 
   const getPosts = document.createElement("div");
+  getPosts.setAttribute("id", "posts_container");
   getPosts.appendChild(ReadPost());
+ 
 
   buttonToPost.setAttribute("class", "to-post");
 
-  postContent.append(post, buttonToPost);
+  postContent.append(PostedImgUser, post, buttonToPost);
 
-  const returnIndex = document.createElement("button");
-  returnIndex.textContent = "Regresa al inicio";
-  returnIndex.setAttribute("id", "return_index");
-  returnIndex.addEventListener("click", () => onNavigate("/"));
-  returnIndex.setAttribute("class", "button");
-  returnIndex.setAttribute("type", "button");
+  // const returnIndex = document.createElement("button");
+  // returnIndex.textContent = "Regresa al inicio";
+  // returnIndex.setAttribute("id", "return_index");
+  // returnIndex.addEventListener("click", () => onNavigate("/"));
+  // returnIndex.setAttribute("class", "button");
+  // returnIndex.setAttribute("type", "button");
 
   content.appendChild(contentTimeline);
-  contentTimeline.append(TimelineHeader, postContent, getPosts, returnIndex);
+  contentTimeline.append(TimelineHeader, postContent, getPosts, );
   return content;
 };

@@ -4,13 +4,13 @@
   height: 1.5rem;
   top: 5%;
   left: 92%;
+  cursor: pointer;
 }
 
 .text_create_register {
   font-size: 2.5rem;
-  margin: 2rem 1rem;
+  margin: 0rem 1rem;
   text-align: center;
-
 }
 
 .new_account {
@@ -56,7 +56,8 @@
 
     .register_close {
       top: 3%;
-      left: 88%;
+      left: 88%; 
+
     }
 
     .text_create_register {
@@ -65,8 +66,20 @@
     }
 
     .condicions_register {
+      width: 80%;
       height: auto;
       font-size: 1rem;
-      margin: 8% 1rem .5rem 1rem;
+      margin: 8% 1rem 0.5rem 1rem;
     }
   }
+}
+
+.register_redirect {
+  width: 4rem;
+  height: 4rem;
+  margin: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+

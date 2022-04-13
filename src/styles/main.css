@@ -1,283 +1,95 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,900;1,700;1,900&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,100&display=swap");
 
-html {
-  /* background-image: url("../Resourses/background\ Solovino1.jpg"); */
-  background-size: 100%;
-  font-family: "Lato", sans-serif;
-  /* background-image: url("../Resourses/Pattern_Mesa de trabajo 1.png");
-  background-size: 50%; */
-}
 body {
-  /* background: #4cdee2;
-  /* background-size: 100%; */
-  /* font-family: "Lato", sans-serif; */
+  font-family: "Lato", sans-serif;
   margin: 0;
-  /* background-image: url("../Resourses/Pattern_Mesa de trabajo 1.png");
-  background-size: 50%; */
+  background-size: 100%;
 }
+
 #root {
   margin: 0;
   display: flex;
   justify-content: center;
 }
 
-.father {
-  margin: 0;
+::placeholder {
+  color: rgb(66, 66, 66);
 }
 
-.son {
-  width: 100%;
-  height: 50%;
-  margin: 0;
+/* 
+/////////////////modalEdit */
+
+.modal_edit_background {
+  position: fixed;
+  width: 90%;
+  height: 40%;
+  right: 5%;
+  top: 15%;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  display: block;
+  z-index: 99999999;
 }
 
-.solovino_logo {
+.modal_edit_container {
   position: absolute;
-  width: 30%;
-  /* margin-right: 65%;
-  margin-left: 13.5%; */
-  margin: 13% 65% 30% 5%;
-}
-.button {
-  width: 40%;
-  height: 4rem;
-  border-radius: 1.25rem;
-  font-size: 20px;
-  text-align: center;
-  margin: 0 3% 1% 57%;
-}
-
-#facebook {
-  background-color: rgba(59, 89, 153, 1);
-  color: white;
-  margin: 21% 3% 1% 57%;
-}
-
-#google {
-  background-color: rgba(221, 76, 57, 1);
-  color: white;
-  margin: 0 3% 1% 57%;
-}
-/*boton de iniciar sesion "morado"*/
-.log-In {
-  width: 40%;
-  height: 2.9375rem;
-  font-size: 1.125rem;
-  background-color: #5a0b95;
-  color: #ffffff;
-  border-radius: 1.3125rem;
-  font-size: 1.25rem;
-  margin: 1% 3% 0.3% 57%;
-}
-
-/*instruccion*/
-.new-User {
-  width: 40%;
-  height: 1.75rem;
-  font-size: 1.25rem;
-  margin: 0 3% 0.3% 57%;
-  text-align: center;
-}
-
-/*boton de registro "rosa"*/
-.sing-In {
-  width: 40%;
-  height: 2.9375rem;
-  font-size: 1.125rem;
-  background-color: #e78bb7;
-  color: #ffffff;
-  border-radius: 1.3125rem;
-  font-size: 1.25rem;
-  justify-content: center;
-  margin: 0 3% 0.3% 57%;
-}
-
-.solovino_logo_register {
-  width: 20%;
-  margin: 5% 40% 0%;
-}
-
-.new_User_register {
-  text-align: center;
-  width: 80%;
-  margin: 2% 10%;
-}
-
-.son_register {
-  background-color: #d4d4d4;
-  width: 60%;
-  border-radius: 20px;
-
-  margin: 5% 20% 0%;
+  width: 100%;
+  height: 85%;
+  top: 15%;
+  background-color: rgb(235, 235, 235);
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 0;
 }
-.button_register {
+
+.modal_close {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  top: -15%;
+  left: 42%;
+  cursor: pointer;
+}
+
+.profile_user_edit {
+  position: absolute;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background-color: aqua;
+  top: -15%;
+}
+
+.input_edit_Post {
   width: 80%;
-  height: 3rem;
-  border-radius: 1.25rem;
-  font-size: 1rem;
+  height: 8rem;
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
   text-align: center;
-  margin: 1% 10% 1%;
-  border: none;
-}
-.condicions_register {
-  width: 70%;
-  font-family: "Lato";
-  font-weight: 300;
-  text-align: center;
-  margin: 2% 15% 2%;
-}
-.logIn_register {
-  width: 50%;
-  height: 3rem;
-  font-size: 1.125rem;
-  background-color: #e78bb7;
-  color: #ffffff;
-  border-radius: 1.3rem;
+  margin: 1rem;
+  display: flex;
   justify-content: center;
-  margin: 4% 25%;
-  border-style: none;
+  align-items: center;
+  border: none;
+  background-color: rgba(65, 213, 218, 0.253);
+  border-bottom: 3px solid #00f7ff;
+  cursor: pointer;
 }
 
-.footer-login-register {
-  position: fixed;
-  width: 30%;
-  bottom: 0;
-  margin: 5% 35% 0%;
-  bottom: 0;
-  background-color: #4cdee2;
-  text-align: center;
-}
-
-@media (max-width: 450px) {
-  html {
-    font-family: "Lato", sans-serif;
-    background-color: #ffffff;
-    background-image: none;
-    margin: 0;
-  }
-
-  .father {
-    background-image: url("../Resourses/fondo\ crear\ cuenta_Mesa\ de\ trabajo\ 1.jpg");
-    background-size: 100%;
-
-    margin: 0;
-    width: 100%;
-  }
-
-  .son {
-    width: 100%;
-    margin: 0;
-  }
-
-  .father_register {
-    background-image: url("../Resourses/fondo\ crear\ cuenta_Mesa\ de\ trabajo\ 1.jpg");
-    background-size: 100%;
-    font-family: "Lato", sans-serif;
-    margin: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .son_register {
-    background-color: #d4d4d4;
-    width: 80%;
-    border-radius: 20px;
-    margin: 10% 5% 18%;
-    padding: 5%;
-    display: flex;
-    flex-direction: column;
-  }
-  /* .son_register {
-    width: 80%;
-    margin: auto;
-
-  } */
-
-  .solovino_logo {
-    position: static;
-    width: 60%;
-    margin: 5% 20%;
-  }
-  .button {
-    width: 90%;
-    height: 4rem;
-    border-radius: 1.25rem;
-    font-size: 20px;
-    text-align: center;
-    margin: 0 5% 3%;
-  }
-
-  #facebook {
-    background-color: rgba(59, 89, 153, 1);
-    color: white;
-    margin: 0 5% 0.3%;
-  }
-
-  #google {
-    background-color: rgba(221, 76, 57, 1);
-    color: white;
-    margin: 0% 5% 5%;
-  }
-  /*boton de iniciar sesion "morado"*/
-  .log-In {
-    width: 60%;
-    height: 2.9375rem;
-    font-size: 1.125rem;
-    background-color: #5a0b95;
-    color: #ffffff;
-    border-radius: 1.3125rem;
-    font-size: 1.25rem;
-    margin: 1% 20% 0.3%;
-  }
-
-  /*instruccion*/
-  .new-User {
-    width: 80%;
-    height: 1.75rem;
-    font-size: 1.25rem;
-    margin: 0 10% 0.3% 10%;
-    text-align: center;
-  }
-
-  /*boton de registro "rosa"*/
-  .sing-In {
-    width: 60%;
-    height: 2.9375rem;
-    font-size: 1.125rem;
-    background-color: #e78bb7;
-    color: #ffffff;
-    border-radius: 1.3125rem;
-    font-size: 1.25rem;
-    justify-content: center;
-    margin: 0 20% 3%;
-  }
-
-  .solovino_logo_register {
-    width: 40%;
-    margin: 5% 30%;
-  }
-  .new_User_register {
-    text-align: center;
-    width: 80%;
-    margin: 5% 10%;
-  }
-  .condicions_register {
-    width: 70%;
-    font-family: "Lato";
-    font-weight: 300;
-    text-align: center;
-    margin: 5% 15%;
-  }
-
-  .footer-login-register {
-    width: 90%;
-    margin: 5% 5% 0%;
-    bottom: 0;
-    background-color: #4cdee2;
-    text-align: center;
-    position: static;
-  }
+.btn_saveChanges {
+  width: 90%;
+  height: 3rem;
+  font-size: 1.2rem;
+  background-color: #00f7ff;
+  color: black;
+  border-radius: 1.5rem;
+  font-size: 1.25rem;
+  margin: 0.5rem;
+  border: none;
+  top: 95%;
+  cursor: pointer;
 }
