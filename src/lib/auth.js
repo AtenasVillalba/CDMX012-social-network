@@ -1,29 +1,27 @@
+import { app } from "./firebase-config.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
-  signInWithPopup,
-  GoogleAuthProvider,
   updateProfile,
+  GoogleAuthProvider,
   FacebookAuthProvider,
+  signInWithPopup,
+  signOut,
 } from "./firebase-imports.js";
 import { onNavigate } from "../main.js";
-import { app } from "./firebase-config.js";
 
 export const auth = getAuth(app);
 
-export function registerNewUsers(emailRegister, paswordRegister, displayName) {
-  // let usuarioVerificado = {};
-
+export function registerNewUsers(emailRegister, paswordRegister) {
   createUserWithEmailAndPassword(auth, emailRegister, paswordRegister)
     .then((userCredential) => {
       updateProfile(auth.currentUser, {
-        displayName,
+        email: emailRegister,
+        password: paswordRegister,
         photoURL: "https://random.imagecdn.app/300/300",
-        //"https://firebasestorage.googleapis.com/v0/b/socialnetwork-12be0.appspot.com/o/users%2FprofilePictures%2FElNelsonRifa%2F6381522.png?alt=media&token=c39a9f25-2b29-4975-ace7-7cd08aefdcc3",
       }).then(() => {
-        onNavigate("/Timeline");
+        localStorage.setItem("dataProfile", false);
       });
     })
     .catch((error) => {
@@ -37,11 +35,9 @@ export const isLogin = (emailLogin, passwordLogin) => {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, emailLogin, passwordLogin)
     .then((userCredential) => {
-      // Signed in
       const user = userCredential.user;
       if (user) {
-        console.log(user);
-        onNavigate("/Timeline");
+        localStorage.setItem("dataProfile", true);
       }
       // ...
     })
@@ -51,8 +47,6 @@ export const isLogin = (emailLogin, passwordLogin) => {
       alert(errorCode || errorMessage);
     });
 };
-
-//iniciar sesión con Google
 
 export const loginWithGoogle = () => {
   const provider = new GoogleAuthProvider();
@@ -82,19 +76,6 @@ export const loginWithGoogle = () => {
     });
 };
 
-export const singOut = () => {
-  const auth = getAuth();
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      onNavigate("/");
-    })
-    .catch((error) => {
-      // An error happened.
-      alert("Error al intentar cerrar sesión");
-    });
-};
-
 export const loginWithFacebook = () => {
   const auth = getAuth();
   const provider = new FacebookAuthProvider();
@@ -106,8 +87,6 @@ export const loginWithFacebook = () => {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       const credential = FacebookAuthProvider.credentialFromResult(result);
       const accessToken = credential.accessToken;
-
-      console.log(user);
       onNavigate("/Timeline");
       // ...
     })
@@ -122,5 +101,18 @@ export const loginWithFacebook = () => {
 
       alert(errorMessage || email || credential);
       // ...
+    });
+};
+
+export const singOut = () => {
+  const auth = getAuth();
+  signOut(auth)
+    .then(() => {
+      localStorage.clear();
+      onNavigate("/");
+    })
+    .catch((error) => {
+      // An error happened.
+      alert("Error al intentar cerrar sesión");
     });
 };

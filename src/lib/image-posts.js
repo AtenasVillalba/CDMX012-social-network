@@ -9,7 +9,7 @@ import {
   // collection,
   // where,
   // getDocs,
-} from './firebase-imports.js';
+} from "./firebase-imports.js";
 import { firebaseConfig } from "./firebase-config.js";
 // import {db} from './firestore.js'
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
@@ -17,24 +17,23 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase
 const app = initializeApp(firebaseConfig);
 
 const storage = getStorage();
- 
 
 /////////imput de la imagen
 export async function uploadImage(profileImage) {
   const image = profileImage.files[0];
   console.log(image);
   const archivoref = ref(storage, `ImageProfile/${image.name}`);
-  await uploadBytes(archivoref, image)
-    .then(() => {
-      (image)=> {
-        const clearImagePath = image.replace(/C:\\fakepath\\/, '');
-        const archivoref1 = ref(storage, `ImageProfile/${clearImagePath}`);
-        getDownloadURL(archivoref1).then(() => {(url) => {   
+  await uploadBytes(archivoref, image).then(() => {
+    (image) => {
+      const clearImagePath = image.replace(/C:\\fakepath\\/, "");
+      const archivoref1 = ref(storage, `ImageProfile/${clearImagePath}`);
+      getDownloadURL(archivoref1).then(() => {
+        (url) => {
           return url;
-          };
-        });
-      };
-    });
+        };
+      });
+    };
+  });
 }
 
 // export async function ReadProfileImage(userEmail) {
@@ -44,14 +43,13 @@ export async function uploadImage(profileImage) {
 //   //   postList.forEach((profile) =>{
 //     const image = profile.data().userPhoto;
 //        getProfileImage(image).then((url) => {
-        
+
 //         localStorage.setItem('photoUser', url );
 //         console.log(url);
 //         return url;
-//       });    
+//       });
 //   });
 // };
-
 
 /// elimina el conflicto fakepath
 // export async function getProfileImage(image) {

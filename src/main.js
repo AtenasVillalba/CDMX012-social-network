@@ -1,23 +1,20 @@
 import { login } from "./components/Login.js";
 import { register } from "./components/Register.js";
-import { profile } from "./components/profile.js";
+import { createProfile } from "./components/Create-profile.js";
 import { timeline } from "./components/Timeline.js";
-import { menu } from "./components/menu.js";
+import { profile } from "./components/Profile.js";
 import { adoptions } from "./components/Adoptions.js";
 
-import {
-  onAuthStateChanged,
-  getAuth,
-} from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+import { onAuthStateChanged, getAuth } from "../lib/firebase-imports.js";
 
 const rootContent = document.getElementById("root");
 
 const routes = {
   "/": login,
   "/Register": register,
-  "/Profile": profile,
+  "/Create-profile": createProfile,
   "/Timeline": timeline,
-  "/menu": menu,
+  "/Profile": profile,
   "/Adoptions": adoptions,
 };
 
@@ -35,19 +32,18 @@ window.onpopstate = () => {
 };
 
 const auth = getAuth();
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    const displayName = user.displayName;
-    const email = user.email;
-    const photo = user.photoURL;
+    let isValid = localStorage.getItem("dataProfile");
 
-    onNavigate("/Timeline");
+    if (JSON.parse(isValid)) {
+      onNavigate("/Timeline");
+    } else {
+      onNavigate("/Create-profile");
+    }
   } else {
     // User is signed out
-
     onNavigate("/");
   }
 });

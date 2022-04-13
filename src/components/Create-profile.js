@@ -1,12 +1,15 @@
 import { onNavigate } from "../main.js";
-import{ updateProfileColecction, updateUserData } from  "../lib/firestore.js";
-import { getAuth, query,
+import { updateProfileColecction, updateUserData } from "../lib/firestore.js";
+import {
+  getAuth,
+  query,
   collection,
   where,
-  getDocs,  } from "../lib/firebase-imports.js";
-  import {db} from '../lib/firestore.js'
-import { uploadImage,  } from "../lib/image-posts.js"
-// ReadProfileImage 
+  getDocs,
+} from "../lib/firebase-imports.js";
+import { db } from "../lib/firestore.js";
+import { uploadImage } from "../lib/image-posts.js";
+// ReadProfileImage
 export const createProfile = () => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -57,15 +60,17 @@ export const createProfile = () => {
   inputProfileImage.addEventListener("change", () => {
     previewImage();
   });
-  function previewImage(){
+  function previewImage() {
     let file = document.getElementById("photo_user").files;
-      if (file.length > 0){
-        let fileReader = new FileReader();
-        fileReader.onload = function(event) {
-          document.getElementById("preview_img_profile").setAttribute("src", event.target.result);
-        }
-        fileReader.readAsDataURL(file[0]);
-      }
+    if (file.length > 0) {
+      let fileReader = new FileReader();
+      fileReader.onload = function (event) {
+        document
+          .getElementById("preview_img_profile")
+          .setAttribute("src", event.target.result);
+      };
+      fileReader.readAsDataURL(file[0]);
+    }
   }
 
   // input nombre
@@ -144,24 +149,31 @@ export const createProfile = () => {
   buttonCreateProfile.setAttribute("class", "button_account");
   buttonCreateProfile.textContent = "Crear Perfil";
 
-  localStorage.setItem('dataProfile', false);
+  localStorage.setItem("dataProfile", false);
 
-  buttonCreateProfile.addEventListener('click',  (e) => {
+  buttonCreateProfile.addEventListener("click", (e) => {
     e.preventDefault();
 
-     uploadImage(photo_user);
+    uploadImage(photo_user);
 
-    let userPhoto =  document.getElementById("photo_user").value;
+    let userPhoto = document.getElementById("photo_user").value;
     let userName = document.getElementById("name_user").value;
     let userBirthday = document.getElementById("birthday_user").value;
     let userCity = document.getElementById("city_user").value;
     let userGender = document.getElementById("gender_user").value;
 
-    updateProfileColecction( userPhoto, userName, userBirthday, userCity, userGender, user.email);
+    updateProfileColecction(
+      userPhoto,
+      userName,
+      userBirthday,
+      userCity,
+      userGender,
+      user.email
+    );
     updateUserData(userName, userPhoto);
     onNavigate("/Timeline");
   });
-  
+
   UserInputSection.append(
     textCreateProfile,
     imgProfileUpdate,
@@ -178,7 +190,5 @@ export const createProfile = () => {
 
   profileContainer.append(prifileSection);
 
-
   return profileContainer;
 };
-

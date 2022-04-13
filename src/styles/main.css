@@ -24,7 +24,7 @@ body {
   width: 90%;
   height: 40%;
   right: 5%;
-  top: 15%;
+  top: 25%;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
@@ -92,4 +92,38 @@ body {
   border: none;
   top: 95%;
   cursor: pointer;
+}
+
+#modal_block {
+  position: fixed;
+  z-index: 1;
+  margin: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+/* ///////Menu */
+
+.menu_container {
+  background-color: #00f7ff;
+  width: 100%;
+  height: 3.2rem;
+  top: 94%;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.menu_icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem;
 }

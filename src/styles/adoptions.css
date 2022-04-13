@@ -1,12 +1,18 @@
-.working-adoptions {
-  background-color: aqua;
-  display: none;
-}
-
 @media (max-width: 400px) {
+  .Adopt_close {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    z-index: 1;
+    left: 21rem;
+    top: 2rem;
+  }
+
   .working-adoptions {
     position: absolute;
     width: 100%;
     display: block;
+    left: 0;
+    top: 0;
   }
 }

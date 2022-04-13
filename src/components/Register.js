@@ -31,11 +31,11 @@ export const register = () => {
   const registerInputSection = document.createElement("section");
   registerInputSection.setAttribute("class", "input_section");
 
-  const inputName = document.createElement("input");
-  inputName.setAttribute("type", "text");
-  inputName.setAttribute("id", "name-user");
-  inputName.setAttribute("class", "input_account");
-  inputName.setAttribute("placeholder", "Nombre completo del Usuario");
+  // const inputName = document.createElement("input");
+  // inputName.setAttribute("type", "text");
+  // inputName.setAttribute("id", "name-user");
+  // inputName.setAttribute("class", "input_account");
+  // inputName.setAttribute("placeholder", "Nombre completo del Usuario");
 
   const inputMail = document.createElement("input");
   inputMail.setAttribute("type", "email");
@@ -61,26 +61,15 @@ export const register = () => {
   buttonRegister.addEventListener("click", () => {
     let userMail = document.getElementById("email_register").value;
     let userPass = document.getElementById("pasword_register").value;
-    let userName = document.getElementById("name-user").value;
 
-    registerNewUsers(userMail, userPass, userName);
-
-  });
-
-  const profileRedirect = document.createElement("img");
-  profileRedirect.setAttribute("src", "../Resourses/icons/huella_like.png");
-  profileRedirect.setAttribute("class", "register_redirect");
-  profileRedirect.addEventListener("click", () => {
-    onNavigate("/Profile");
+    registerNewUsers(userMail, userPass);
   });
 
   registerInputSection.append(
-    inputName,
     inputMail,
     inputPasword,
     textCondicions,
-    buttonRegister,
-    profileRedirect
+    buttonRegister
   );
 
   const footerPage = document.createElement("footer");

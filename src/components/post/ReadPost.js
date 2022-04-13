@@ -1,30 +1,30 @@
 import {
+  getAuth,
   query,
   collection,
   orderBy,
   onSnapshot,
   limit,
-} from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
+} from "../../lib/firebase-imports.js";
 import { db, deletePost, editPost, likePost } from "../../lib/firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
 
- 
 const ReadPost = () => {
-  
-  const ContentPost = document.createElement("section");
-  ContentPost.setAttribute("class", "content_post");
-  // aqui on snapshot
+  const ContentAllPost = document.createElement("section");
+  ContentAllPost.setAttribute("class", "content_all_post");
   const data = collection(db, "post");
 
   const q = query(data, orderBy("date", "desc"), limit(20));
   const unsubscribe = onSnapshot(q, (postList) => {
-    removeChildNodes(ContentPost);
+    removeChildNodes(ContentAllPost);
     postList.forEach((post) => {
       if (post.data().post) {
+        const ContentPost = document.createElement("section");
+        ContentPost.setAttribute("class", "content_post");
 
         const PostUserData = document.createElement("section");
         PostUserData.setAttribute("class", "Post_user_data");
 
+        // updateprofile de photo url
         const PostImgUser = document.createElement("img");
         PostImgUser.setAttribute("class", "Post_ImgUser");
         PostImgUser.setAttribute("src", post.data().photo);
@@ -41,7 +41,8 @@ const ReadPost = () => {
         postDate.setAttribute("class", "post_date");
 
         headerPost.append(PostDisplayName, postDate);
-        PostUserData.append(PostImgUser,headerPost);
+        PostUserData.append(PostImgUser, headerPost);
+        //
 
         const postText = document.createElement("h2");
         postText.setAttribute("class", "text_post");
@@ -49,7 +50,7 @@ const ReadPost = () => {
 
         const updateWrapper = document.createElement("section");
         updateWrapper.className = "update_wrapper";
-       
+
         const postInteractions = document.createElement("section");
         postInteractions.className = "post_interactions";
 
@@ -65,32 +66,34 @@ const ReadPost = () => {
         likeNumber.textContent = post.data().likes.length;
         likeNumber.setAttribute("class", "like-number");
 
-
         postInteractions.append(like, likeNumber);
 
-        const updatePost = document.createElement("section");
-        updatePost.setAttribute("id", "update_show_post");
-        updatePost.setAttribute("class", "update_post");
-        // updatePost.appendChild(updatePosteSection(post));
+        updateWrapper.append(postInteractions);
 
-        const deletePost = document.createElement("img");
-        deletePost.setAttribute("class", "delete_post");
-        deletePost.setAttribute("src", "./Resourses/icons/delete_post.png");
-        deletePost.addEventListener("click", () => {
-          deleteModalSection.appendChild(BuildDeleteModal(post));
-        });
+        if (updatePosteSection(post.data().email)) {
+          const updatePost = document.createElement("section");
+          updatePost.setAttribute("id", "update_show_post");
+          updatePost.setAttribute("class", "update_post");
 
-        const btnEditPost = document.createElement("img", "edit-coment");
-        btnEditPost.setAttribute("class", "edit_post");
-        btnEditPost.setAttribute("src", "./Resourses/icons/edit_post.png");
-        btnEditPost.setAttribute("data-id", post.id);
-        btnEditPost.addEventListener("click", () => {
-          editModalSection.appendChild(BuildEditModal(post));
-        });
+          const deletePost = document.createElement("img");
+          deletePost.setAttribute("class", "delete_post");
+          deletePost.setAttribute("src", "./Resourses/icons/delete_post.png");
+          deletePost.addEventListener("click", () => {
+            deleteModalSection.appendChild(BuildDeleteModal(post));
+          });
 
-        updatePost.append(deletePost,btnEditPost );
+          const btnEditPost = document.createElement("img", "edit-coment");
+          btnEditPost.setAttribute("class", "edit_post");
+          btnEditPost.setAttribute("src", "./Resourses/icons/edit_post.png");
+          btnEditPost.setAttribute("data-id", post.id);
+          btnEditPost.addEventListener("click", () => {
+            editModalSection.appendChild(BuildEditModal(post));
+          });
 
-        updateWrapper.append(postInteractions, updatePost);
+          updatePost.append(deletePost, btnEditPost);
+
+          updateWrapper.appendChild(updatePost);
+        }
 
         const deleteModalSection = document.createElement("div");
         deleteModalSection.setAttribute("id", "mcd-" + post.id);
@@ -98,11 +101,16 @@ const ReadPost = () => {
         const editModalSection = document.createElement("div");
         editModalSection.setAttribute("id", "mc-" + post.id);
 
-        ContentPost.append(PostUserData, postText, updateWrapper, deleteModalSection, editModalSection );
+        ContentPost.append(PostUserData, postText, updateWrapper);
+        ContentAllPost.append(
+          ContentPost,
+          deleteModalSection,
+          editModalSection
+        );
       }
     });
   });
-  return ContentPost;
+  return ContentAllPost;
 };
 
 function getDate(date) {
@@ -123,6 +131,7 @@ const BuildEditModal = (post) => {
   let postContent = post.data().post;
 
   const editModalContainer = document.createElement("div");
+  editModalContainer.setAttribute("id", "modal_block");
   editModalContainer.setAttribute("class", "modal_edit_background");
 
   editModalContainer.setAttribute("id", postId);
@@ -215,17 +224,14 @@ const BuildDeleteModal = (post) => {
   return deleteModalContainer;
 };
 
-// const updatePosteSection  = (post) => {
-//   const auth = getAuth();
-//   const user = auth.currentUser;
+const updatePosteSection = (email) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
 
-//   if ( user.email == post.data().email){
-
-//     const updatePost = document.getElementById ("update_show_post");
-//     updatePost.classList.remove('update_post');
-//     updatePost.classList.add('show_update_wrapper');
-//   };
-// };
-
+  if (user.email == email) {
+    return true;
+  }
+  return false;
+};
 
 export default ReadPost;

@@ -1,8 +1,7 @@
 import { onNavigate } from "../main.js";
 import { singOut } from "../lib/auth.js";
 
-
-export const menu = () => {
+export const menuDesktop = () => {
   const menuContainer = document.createElement("nav");
   menuContainer.className = "menu-container";
   /////PERFIL SECTION
@@ -21,7 +20,7 @@ export const menu = () => {
   ///// BTN CLOSE
   const menuClose = document.createElement("img");
   menuClose.setAttribute("src", "../Resourses/icons/flecha.png");
-  menuClose.id= "menu-close";
+  menuClose.id = "menu-close";
 
   menuClose.addEventListener("click", () => {
     onNavigate("/Timeline");
@@ -73,8 +72,6 @@ export const menu = () => {
   menuAdopt.addEventListener("click", () => {
     onNavigate("/Adoptions");
   });
-
-
 
   const iconAdopt = document.createElement("img");
   iconAdopt.setAttribute("src", "../Resourses/icons/adopt.png");
@@ -134,7 +131,14 @@ export const menu = () => {
 
   menuMatch.append(iconMatch, tittleMatch);
 
-  menuNav.append(menuProfile, menuPets, menuAdopt, menuTraining, menuMemes, menuMatch);
+  menuNav.append(
+    menuProfile,
+    menuPets,
+    menuAdopt,
+    menuTraining,
+    menuMemes,
+    menuMatch
+  );
 
   ////MENU SECTION
   const whiteSpace = document.createElement("div");
@@ -163,3 +167,43 @@ export const menu = () => {
 
   return menuContainer;
 };
+
+// export const menuMovile = () => {
+//   const menuMovileContainer = document.createElement("section");
+//   menuMovileContainer.className = "menu-container";
+
+//   const iconHomeMovile = document.createElement("img");
+//   iconHomeMovile.setAttribute("src", "../Resourses/icons/home.png");
+//   iconHomeMovile.className = "menu_icon";
+//   iconHomeMovile.addEventListener("click", () => {
+//     onNavigate("/Timeline");
+//   });
+
+//   const iconProfileMovile = document.createElement("img");
+//   iconProfileMovile.setAttribute("src", "../Resourses/icons/user.png");
+//   iconProfileMovile.className = "menu_icon";
+//   iconProfileMovile.addEventListener("click", () => {
+//     onNavigate("/Timeline");
+
+//   const iconAdoptsMovile = document.createElement("img");
+//   iconAdoptsMovile.setAttribute("src", "../Resourses/icons/adopt.png");
+//   iconAdoptsMovile.className = "menu_icon";
+//   iconAdoptsMovile.addEventListener("click", () => {
+//     // onNavigate("/Adoptions");
+//   });
+
+//   const iconLogOutMovile = document.createElement("img");
+//   iconLogOutMovile.setAttribute("src", "../Resourses/icons/log out.png");
+//   iconLogOutMovile.className = "menu_icon";
+//   iconLogOutMovile.addEventListener("click", () => {
+//     singOut();
+//     });
+//   });
+
+//   menuMovileContainer.append(iconHomeMovile, iconProfileMovile, iconAdoptsMovile, iconLogOutMovile);
+//   return menuMovileContainer;
+// }
+
+const noPostMensaje = document.createElement("div");
+noPostMensaje.setAttribute("class", "no_post_mensaje");
+noPostMensaje.textContent = "Oh, no hay nada por aqui";

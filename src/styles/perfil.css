@@ -1,12 +1,40 @@
-.upload_image_section{
-background-color: violet ;
-width: 5rem;
-height: 5rem;
-border-radius: 20px;
+.upload_image_section {
+  background-color: violet;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 20px;
+  margin: 30%;
 }
 
-input[type="file"]{
-position: absolute;
-top: -9999px;
-left: -9999px;
+/* input[type="file"]{
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    } */
+
+.img_profile_update {
+  width: 8rem;
+  height: auto;
+  background: #eeeeee;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+.preview_img {
+  position: absolute;
+  width: 8rem;
+  height: auto;
+  background: #eeeeee;
+  border-radius: 15px;
+  top: 14.6rem;
+}
+
+#create_Profile {
+  background-color: #5a0b95;
+  margin-top: 10%;
+}
+
+.text_create_profile {
+  margin-top: 45%;
 }

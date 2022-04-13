@@ -1,94 +1,115 @@
-// import { createPost } from "../lib/firestore.js";
-// import { singOut } from "../lib/auth.js";
-import { onNavigate } from "../main.js";
 import { savePost } from "../lib/firestore.js";
 import ReadPost from "./post/ReadPost.js";
-// import { menu } from "./menu.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
-
+import { onNavigate } from "../main.js";
+import { singOut } from "../lib/auth.js";
+import { getAuth } from "../lib/firebase-imports.js";
+// import{ReadProfileImage} from "../lib/image-posts.js"
 
 export const timeline = () => {
   const auth = getAuth();
   const user = auth.currentUser;
-  
- 
-  const content = document.createElement("section");
-  content.setAttribute("class", "content-timeline");
 
   const contentTimeline = document.createElement("section");
-  contentTimeline.setAttribute("class", "content-all-timeline");
+  contentTimeline.setAttribute("class", "content_timeline");
 
   ///// HEADER
-
-  const TimelineHeader = document.createElement("header");
-  TimelineHeader.setAttribute("class", "timeline-header");
+  const timelineHeader = document.createElement("header");
+  timelineHeader.setAttribute("class", "timeline_header");
 
   const headerLogo = document.createElement("img");
-  headerLogo.setAttribute("class", "solovino-logo-timeline");
+  headerLogo.setAttribute("class", "solovino_logo_timeline");
   headerLogo.setAttribute("src", "../Resourses/Logos/solovino black movil.png");
 
-  const menuNav = document.createElement("img"); 
-  menuNav.setAttribute("class","menu-nav")
-  menuNav.setAttribute("src", "../Resourses/icons/menu.png");
-  
-  menuNav.addEventListener("click", () => {
-    onNavigate("/menu");
+  timelineHeader.append(headerLogo);
 
-    // menu();
-  });
+  ///// NEW POST
+  const newPostContent = document.createElement("section");
+  newPostContent.setAttribute("id", "new_post_content");
 
-  TimelineHeader.append(headerLogo,menuNav,); ////////
+  const NewPostImgUser = document.createElement("img");
+  NewPostImgUser.setAttribute("class", "post_img_user");
+  NewPostImgUser.setAttribute("src", user.photoURL);
 
-  const postContent = document.createElement("section");
-  postContent.setAttribute("id", "postContent");
-
-  const PostedImgUser = document.createElement("img");
-  PostedImgUser.setAttribute("class", "Post_ImgUser");
-  PostedImgUser.setAttribute("src", user.photoURL);
-
-
-
-  const post = document.createElement("textarea");
-  post.setAttribute("placeholder", "Escribe algo...");
-  post.setAttribute("id", "post");
-  post.setAttribute("class", "post");
-  post.setAttribute("placeholder", "Escribe algo...");
+  const Newpost = document.createElement("input");
+  Newpost.setAttribute("placeholder", "Escribe algo...");
+  Newpost.setAttribute("id", "new_post");
+  Newpost.setAttribute("class", "new_post_input");
 
   const buttonToPost = document.createElement("button");
   buttonToPost.textContent = "Publicar";
-  buttonToPost.setAttribute("id", "toPost");
+  buttonToPost.setAttribute("id", "button_to_post");
   buttonToPost.addEventListener("click", () => {
-    //   createPost();
-    const contentPost = document.getElementById("post").value;
+    const contentPost = document.getElementById("new_post").value;
     const date = new Date();
     savePost(contentPost, date);
   });
 
   buttonToPost.addEventListener("click", () => {
     function limpiar() {
-      document.getElementById("post").value = "";
+      document.getElementById("new_post").value = "";
     }
     limpiar();
   });
+  newPostContent.append(NewPostImgUser, Newpost, buttonToPost);
 
+  ///// POST AREA
+  const PostsArea = document.createElement("section");
+  PostsArea.setAttribute("id", "posts_container");
+  PostsArea.appendChild(ReadPost());
 
-  const getPosts = document.createElement("div");
-  getPosts.setAttribute("id", "posts_container");
-  getPosts.appendChild(ReadPost());
- 
+  ///// MENU
+  const menuMovileContainer = document.createElement("section");
+  menuMovileContainer.className = "menu_container";
 
-  buttonToPost.setAttribute("class", "to-post");
+  const iconHomeMovile = document.createElement("img");
+  iconHomeMovile.setAttribute("src", "../Resourses/icons/home.png");
+  iconHomeMovile.className = "menu_icon";
+  iconHomeMovile.addEventListener("click", () => {
+    backToTop();
+  });
 
-  postContent.append(PostedImgUser, post, buttonToPost);
+  const iconProfileMovile = document.createElement("img");
+  iconProfileMovile.setAttribute("src", "../Resourses/icons/user.png");
+  iconProfileMovile.className = "menu_icon";
+  iconProfileMovile.addEventListener("click", () => {
+    onNavigate("/Profile");
+  });
 
-  // const returnIndex = document.createElement("button");
-  // returnIndex.textContent = "Regresa al inicio";
-  // returnIndex.setAttribute("id", "return_index");
-  // returnIndex.addEventListener("click", () => onNavigate("/"));
-  // returnIndex.setAttribute("class", "button");
-  // returnIndex.setAttribute("type", "button");
+  const iconAdoptsMovile = document.createElement("img");
+  iconAdoptsMovile.setAttribute("src", "../Resourses/icons/adopt.png");
+  iconAdoptsMovile.className = "menu_icon";
+  iconAdoptsMovile.addEventListener("click", () => {
+    onNavigate("/Adoptions");
+  });
 
-  content.appendChild(contentTimeline);
-  contentTimeline.append(TimelineHeader, postContent, getPosts, );
-  return content;
+  const iconLogOutMovile = document.createElement("img");
+  iconLogOutMovile.setAttribute("src", "../Resourses/icons/log out.png");
+  iconLogOutMovile.className = "menu_icon";
+  iconLogOutMovile.addEventListener("click", () => {
+    singOut();
+  });
+
+  menuMovileContainer.append(
+    iconHomeMovile,
+    iconProfileMovile,
+    iconAdoptsMovile,
+    iconLogOutMovile
+  );
+  contentTimeline.append(
+    timelineHeader,
+    newPostContent,
+    PostsArea,
+    menuMovileContainer
+  );
+
+  return contentTimeline;
 };
+
+function backToTop() {
+  // window.scrollTo(0,0);
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+}

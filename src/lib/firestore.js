@@ -1,29 +1,26 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import {
-  initializeApp,
+  getAuth,
   getFirestore,
   collection,
   addDoc,
-  setDoc,
   doc,
   deleteDoc,
   updateDoc,
   arrayUnion,
   arrayRemove,
-  getAuth,
+  updateProfile,
 } from "./firebase-imports.js";
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
+
 export const db = getFirestore();
 
 export let savePost = (post, date) => {
   const auth = getAuth();
   const user = auth.currentUser;
-
   if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    // ...
     const uid = user.uid;
     const displayName = user.displayName;
     const email = user.email;
@@ -63,7 +60,7 @@ export const updateProfileColecction = (
   });
 };
 
-export let updateUserData = (userName, userPhoto ) => {
+export let updateUserData = (userName, userPhoto) => {
   const auth = getAuth();
   if (userPhoto) {
     updateProfile(auth.currentUser, {
@@ -77,18 +74,21 @@ export let updateUserData = (userName, userPhoto ) => {
   }
 };
 
-
-
 // export let updateUserphoto = (userPhoto) => {
 //   const auth = getAuth();
 //   if (userPhoto) {
 //     updateProfile(auth.currentUser, {
 //       photoURL: userPhoto,
 //     });
-//   } 
-
+//   }
 // };
 
+// export let updateUserData = ( userName) => {
+//   const auth = getAuth();
+//   updateProfile(auth.currentUser, {
+//     displayName : userName
+//   })
+// };
 
 export const deletePost = (id) => {
   //alert("Este post será eliminado");
@@ -113,13 +113,11 @@ export async function likePost(post) {
   if (doILikeIt) {
     // Lo quito
     const postRef = doc(db, "post", post.id);
-    console.log(auth.currentUser);
     await updateDoc(postRef, {
       likes: arrayRemove({ email: user.email }),
     });
   } else {
     const postRef = doc(db, "post", post.id);
-    console.log(auth.currentUser);
     await updateDoc(postRef, {
       likes: arrayUnion({ email: user.email }),
     });
