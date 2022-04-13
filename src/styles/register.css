@@ -32,14 +32,12 @@
   background-color: #00f7ff;
   color: black;
   font-weight: 500;
-  cursor: pointer;
 }
 
 @media only screen and (max-width: 920px) {
   .register_close {
     top: 3%;
     left: 92%;
-    cursor: pointer;
   }
 
   .text_create_register {
@@ -55,10 +53,11 @@
   }
 
   @media (max-width: 500px) {
+
     .register_close {
       top: 3%;
-      left: 88%;
-      cursor: pointer;
+      left: 88%; 
+
     }
 
     .text_create_register {
@@ -83,3 +82,4 @@
   display: flex;
   justify-content: center;
 }
+

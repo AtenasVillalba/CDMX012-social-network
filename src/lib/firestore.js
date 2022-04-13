@@ -43,7 +43,52 @@ export let savePost = (post, date) => {
   }
 };
 
-//const doUser = db.collection("user").doc(user.uid);
+export const updateProfileColecction = (
+  userPhoto,
+  userName,
+  userBirthday,
+  userCity,
+  userGender,
+  userEmail
+) => {
+  addDoc(collection(db, "profile"), {
+    userPhoto,
+    userName,
+    userBirthday,
+    userCity,
+    userGender,
+    userEmail,
+  }).then(() => {
+    localStorage.setItem("dataProfile", true);
+  });
+};
+
+export let updateUserData = (userName, userPhoto ) => {
+  const auth = getAuth();
+  if (userPhoto) {
+    updateProfile(auth.currentUser, {
+      displayName: userName,
+      photoURL: userPhoto,
+    });
+  } else {
+    updateProfile(auth.currentUser, {
+      displayName: userName,
+    });
+  }
+};
+
+
+
+// export let updateUserphoto = (userPhoto) => {
+//   const auth = getAuth();
+//   if (userPhoto) {
+//     updateProfile(auth.currentUser, {
+//       photoURL: userPhoto,
+//     });
+//   } 
+
+// };
+
 
 export const deletePost = (id) => {
   //alert("Este post será eliminado");
