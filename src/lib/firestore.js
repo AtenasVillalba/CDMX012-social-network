@@ -1,10 +1,16 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import {
+  initializeApp,
   getFirestore,
   collection,
   addDoc,
-} from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+  setDoc,
+  doc,
+  deleteDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  getAuth,
+} from "./firebase-imports.js";
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
@@ -30,25 +36,13 @@ export let savePost = (post, date) => {
       displayName,
       email,
       photo,
+      likes: [],
     });
   } else {
     // No user is signed in.
   }
 };
 
-<<<<<<< HEAD
-export let saveUserData = (name) => {
-  console.log("Guardando datos");
-  return addDoc(collection(db, "user"), {
-    name,
-  });
-};
-//photo, personName, post,, like
-// export const dataCall = (callBackFunction) => {
-//   getDocs(collection(db, 'newColection')).then((snapshot) => {
-//     callBackFunction(snapshot.docs);
-//   });
-=======
 export const updateProfileColecction = (
   userPhoto,
   userName,
@@ -92,49 +86,42 @@ export let updateUserData = (userName, userPhoto ) => {
 //       photoURL: userPhoto,
 //     });
 //   } 
->>>>>>> 118ce34 (WIP: upload image)
+
 // };
 
-const getPosts = () => console.log("hola");
 
-// try {
-//   const docRef = await addDoc(collection(db, "users"), {
-//     first: "Ada",
-//     last: "Lovelace",
-//     born: 1815,
-//   });
-//   console.log("Document written with ID: ",  docRef.id);
-// } catch (e) {
-//   console.error("Error adding document: ", e);
-// }
+export const deletePost = (id) => {
+  //alert("Este post será eliminado");
+  deleteDoc(doc(db, "post", id));
+};
 
-// try {
-//   const docRef = await addDoc(collection(db, "users"), {
-//     first: "Alan",
-//     middle: "Mathison",
-//     last: "Turing",
-//     born: 1912,
-//   });
+export async function editPost(id, editImput, date) {
+  const postRef = doc(db, "post", id);
+  await updateDoc(postRef, {
+    post: editImput,
+    date: new Date(),
+  });
+}
 
-//   console.log("Document written with ID: ", docRef.id);
-// } catch (e) {
-//   console.error("Error adding document: ", e);
-// }
+export async function likePost(post) {
+  const auth = getAuth();
+  const user = auth.currentUser;
 
-// try {
-//   const docRef = await addDoc(collection(db, "users"), {
-//     first: "Alan",
-//     middle: "Mathison",
-//     last: "Turing",
-//     born: 1912,
-//   });
+  const likes = post.data().likes;
+  const doILikeIt = likes.find((like) => like.email === user.email);
 
-//   console.log("Document written with ID: ", docRef.id);
-// } catch (e) {
-//   console.error("Error adding document: ", e);
-// }
-
-// const querySnapshot = await getDocs(collection(db, "users"));
-// querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${doc.data()}`);
-// });
+  if (doILikeIt) {
+    // Lo quito
+    const postRef = doc(db, "post", post.id);
+    console.log(auth.currentUser);
+    await updateDoc(postRef, {
+      likes: arrayRemove({ email: user.email }),
+    });
+  } else {
+    const postRef = doc(db, "post", post.id);
+    console.log(auth.currentUser);
+    await updateDoc(postRef, {
+      likes: arrayUnion({ email: user.email }),
+    });
+  }
+}
