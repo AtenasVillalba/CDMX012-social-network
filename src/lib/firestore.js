@@ -36,6 +36,7 @@ export let savePost = (post, date) => {
   }
 };
 
+<<<<<<< HEAD
 export let saveUserData = (name) => {
   console.log("Guardando datos");
   return addDoc(collection(db, "user"), {
@@ -47,6 +48,51 @@ export let saveUserData = (name) => {
 //   getDocs(collection(db, 'newColection')).then((snapshot) => {
 //     callBackFunction(snapshot.docs);
 //   });
+=======
+export const updateProfileColecction = (
+  userPhoto,
+  userName,
+  userBirthday,
+  userCity,
+  userGender,
+  userEmail
+) => {
+  addDoc(collection(db, "profile"), {
+    userPhoto,
+    userName,
+    userBirthday,
+    userCity,
+    userGender,
+    userEmail,
+  }).then(() => {
+    localStorage.setItem("dataProfile", true);
+  });
+};
+
+export let updateUserData = (userName, userPhoto ) => {
+  const auth = getAuth();
+  if (userPhoto) {
+    updateProfile(auth.currentUser, {
+      displayName: userName,
+      photoURL: userPhoto,
+    });
+  } else {
+    updateProfile(auth.currentUser, {
+      displayName: userName,
+    });
+  }
+};
+
+
+
+// export let updateUserphoto = (userPhoto) => {
+//   const auth = getAuth();
+//   if (userPhoto) {
+//     updateProfile(auth.currentUser, {
+//       photoURL: userPhoto,
+//     });
+//   } 
+>>>>>>> 118ce34 (WIP: upload image)
 // };
 
 const getPosts = () => console.log("hola");
