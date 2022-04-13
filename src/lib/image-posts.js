@@ -26,15 +26,16 @@ export async function uploadImage(profileImage) {
   const archivoref = ref(storage, `ImageProfile/${image.name}`);
   await uploadBytes(archivoref, image)
     .then(() => {
-      getProfileImage(image) = ()=> {
+      (image)=> {
         const clearImagePath = image.replace(/C:\\fakepath\\/, '');
         const archivoref1 = ref(storage, `ImageProfile/${clearImagePath}`);
         getDownloadURL(archivoref1).then(() => {(url) => {   
           return url;
           };
         });
-    };
-};
+      };
+    });
+}
 
 // export async function ReadProfileImage(userEmail) {
 //   // const q = query(collection(db, "profile"), where("userEmail", "==", userEmail));
