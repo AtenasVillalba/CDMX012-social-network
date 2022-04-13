@@ -6,6 +6,7 @@ export {
   deleteDoc,
   collection,
   addDoc,
+  setDoc,
   arrayUnion,
   arrayRemove,
   onSnapshot,

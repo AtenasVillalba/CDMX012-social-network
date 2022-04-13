@@ -77,8 +77,9 @@
   width: 100%;
   height: auto;
   top: 10rem;
-  background-image: url("../Resourses/Logos/pattern_paws.png"),
-    linear-gradient(to right, #f352a0, #c471ed, #00f7ff);
+  background-color: white;
+  /* background-image: url("../Resourses/Logos/pattern_paws.png"),
+    linear-gradient(to right, #f352a0, #c471ed, #00f7ff); */
   background-size: cover;
   z-index: 0;
 }
