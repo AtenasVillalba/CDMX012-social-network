@@ -49,6 +49,11 @@ export const register = () => {
   inputPasword.setAttribute("class", "input_account");
   inputPasword.setAttribute("placeholder", "Contraseña");
 
+  ////////mensaje de algo mal
+  const text = document.createElement("p");
+  text.id = "texto";
+  text.textContent = "La contraseña debe contener masde 6 caracteres";
+
   const textCondicions = document.createElement("h4");
   textCondicions.setAttribute("class", "condicions_register");
   textCondicions.textContent =
@@ -68,6 +73,7 @@ export const register = () => {
   registerInputSection.append(
     inputMail,
     inputPasword,
+    text,
     textCondicions,
     buttonRegister
   );

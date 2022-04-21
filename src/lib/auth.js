@@ -28,8 +28,11 @@ export function registerNewUsers(emailRegister, paswordRegister) {
       const errorCode = error.code;
       const errorMessage = error.message;
       alert(errorCode || errorMessage);
+      
     });
 }
+
+
 
 export const isLogin = (emailLogin, passwordLogin) => {
   const auth = getAuth();

@@ -67,6 +67,10 @@
       margin: 45% 1rem 1rem 1rem;
     }
 
+    #texto {
+      width: 80%;
+    }
+
     .condicions_register {
       width: 80%;
       height: auto;
