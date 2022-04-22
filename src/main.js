@@ -24,10 +24,10 @@ export const onNavigate = (pathname) => {
     rootContent.removeChild(rootContent.firstChild);
   }
 
-  rootContent.appendChild(routes[pathname]());
+  rootContent.appendChild(routes[pathname]()); // se utilizan parentesis porque login, register, timeline son funciones y necesitan ejecutarse
 };
 
-window.onpopstate = () => {
+window.onpopstate = () => { //controlador de eventos especifico
   rootContent.appendChild(routes[window.location.pathname]());
 };
 

@@ -41,7 +41,6 @@
 }
 
 .input_account {
-  text-transform: capitalize;
   cursor: pointer;
   width: 40%;
   height: 3rem;

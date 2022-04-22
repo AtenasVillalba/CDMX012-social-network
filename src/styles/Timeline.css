@@ -41,7 +41,7 @@
   position: fixed;
   z-index: 1;
   margin: 0 25%;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 20% 50% 30%;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -53,7 +53,7 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 100px;
-  margin: 1.25rem 1.25rem 1.25rem 2.5rem;
+  margin: 1.25rem 1.25rem 1rem 2.5rem;
   grid-column-start: 1;
   grid-column-end: 2;
 }
@@ -69,6 +69,8 @@
   font-size: 1.25rem;
   display: grid;
   text-align: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
 }
 
 #button_to_post {
@@ -82,6 +84,8 @@
   margin: 1.5rem 0;
   border: none;
   align-items: center;
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
 
 /* ////////////////Posts */
@@ -242,6 +246,98 @@
   margin: 3%;
   width: 5%;
   height: 5%;
+}
+
+/* 
+/////////////////modalEdit */
+
+.modal_edit_background {
+  position: fixed;
+  width: 60%;
+  height: 50%;
+  right: 20%;
+  top: 25%;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  display: block;
+  z-index: 99999999;
+}
+
+.modal_edit_container {
+  position: absolute;
+  width: 100%;
+  height: 85%;
+  top: 15%;
+  background-color: rgb(235, 235, 235);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.modal_close {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  top: -15%;
+  left: 42%;
+  cursor: pointer;
+}
+
+.profile_user_edit {
+  position: absolute;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background-color: aqua;
+  top: -15%;
+}
+
+.input_edit_Post {
+  width: 80%;
+  height: 50%;
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: rgba(65, 213, 218, 0.253);
+  border-bottom: 3px solid #00f7ff;
+  cursor: pointer;
+}
+
+.btn_saveChanges {
+  width: 90%;
+  height: 3rem;
+  font-size: 1.2rem;
+  background-color: #00f7ff;
+  color: black;
+  border-radius: 1.5rem;
+  font-size: 1.25rem;
+  margin: 10% 0.5rem 5%;
+  border: none;
+  top: 95%;
+  cursor: pointer;
+}
+
+#modal_block {
+  position: fixed;
+  z-index: 1;
+  margin: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
 }
 
 @media only screen and (max-width: 920px) {
@@ -444,6 +540,98 @@
     height: 2rem;
     margin: 0.5rem;
   }
+
+  /* 
+/////////////////modalEdit */
+
+  .modal_edit_background {
+    position: block;
+    width: 60%;
+    height: 40%;
+    right: 20%;
+    top: 25%;
+    box-shadow: 0 0 1rem 0 rgb(0 0 0 / 30%);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    display: block;
+    z-index: 99999999;
+  }
+
+  .modal_edit_container {
+    position: absolute;
+    width: 100%;
+    height: 85%;
+    top: 15%;
+    background-color: rgb(235, 235, 235);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .modal_close {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    top: -15%;
+    left: 42%;
+    cursor: pointer;
+  }
+
+  .profile_user_edit {
+    position: absolute;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background-color: aqua;
+    top: -15%;
+  }
+
+  .input_edit_Post {
+    width: 80%;
+    height: 8rem;
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 10% 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: rgba(65, 213, 218, 0.253);
+    border-bottom: 3px solid #00f7ff;
+    cursor: pointer;
+  }
+
+  .btn_saveChanges {
+    width: 90%;
+    height: 3rem;
+    font-size: 1.2rem;
+    background-color: #00f7ff;
+    color: black;
+    border-radius: 1.5rem;
+    font-size: 1.25rem;
+    margin: 0.5rem;
+    border: none;
+    top: 95%;
+    cursor: pointer;
+  }
+
+  #modal_block {
+    position: fixed;
+    z-index: 1;
+    margin: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: block;
+  }
 }
 
 @media (max-width: 500px) {
@@ -478,10 +666,15 @@
     width: 100%;
     height: 5rem;
     top: 5rem;
-    display: flex;
+    display: grid;
     flex-flow: row wrap;
     position: fixed;
     z-index: 1;
+    grid-template-columns: 20% 50% 30%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
   }
 
   .post_img_user,
@@ -489,19 +682,22 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 100px;
-    margin: 1.25rem 1.25rem 1.25rem 2.5rem;
+    margin: 1.25rem 1.25rem 0.5rem 1.25rem;
+    grid-column-start: 1;
+    grid-column-end: 2;
   }
 
   .new_post_input {
     font-family: "Lato";
     font-style: normal;
-    width: 50%;
+    width: 100%;
     height: 95%;
     background-color: #d6d6d6;
     border: none;
     word-wrap: break-word;
     font-size: 1.25rem;
-    display: flex;
+    grid-column-start: 2;
+    grid-column-end: 3;
   }
 
   #button_to_post {
@@ -515,6 +711,8 @@
     margin: 1.5rem 0;
     border: none;
     align-items: center;
+    grid-column-start: 3;
+    grid-column-end: 4;
   }
 
   /* ////////////////Posts */
@@ -661,8 +859,100 @@
     border-radius: 0px;
   }
   .Adopt_close {
-    margin: 3%;
+    margin: 0;
     width: 5%;
     height: 5%;
+  }
+
+  /* 
+/////////////////modalEdit */
+
+  .modal_edit_background {
+    position: fixed;
+    width: 90%;
+    height: 40%;
+    right: 5%;
+    top: 25%;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    display: block;
+    z-index: 99999999;
+  }
+
+  .modal_edit_container {
+    position: absolute;
+    width: 100%;
+    height: 85%;
+    top: 15%;
+    background-color: rgb(235, 235, 235);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .modal_close {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    top: -15%;
+    left: 42%;
+    cursor: pointer;
+  }
+
+  .profile_user_edit {
+    position: absolute;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background-color: aqua;
+    top: -15%;
+  }
+
+  .input_edit_Post {
+    width: 80%;
+    height: 8rem;
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: rgba(65, 213, 218, 0.253);
+    border-bottom: 3px solid #00f7ff;
+    cursor: pointer;
+  }
+
+  .btn_saveChanges {
+    width: 90%;
+    height: 3rem;
+    font-size: 1.2rem;
+    background-color: #00f7ff;
+    color: black;
+    border-radius: 1.5rem;
+    font-size: 1.25rem;
+    margin: 0.5rem;
+    border: none;
+    top: 95%;
+    cursor: pointer;
+  }
+
+  #modal_block {
+    position: fixed;
+    z-index: 1;
+    margin: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: block;
   }
 }
