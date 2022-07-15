@@ -8,8 +8,7 @@
 * [3. Prototipos](#3-prototipos)
 * [4. Test de usabilidad ](#4-test-de-usabilidad)
 * [5. Vista de la intefaz](#5-vista-de-la-interfaz)
-* [6. Deploy](#6-deploy)
-* [7. Creadoras](7-creadoras)
+* [6. Creadoras](6-creadoras)
 
 ## 1. Resumen del proyecto
 
@@ -38,7 +37,7 @@ Los prototipos fueron creados en Figma.
 
 ## 4. Test de usabilidad
 
-Se realizaron diferentes pruebas de usabilidad a través de la plataforma de maze para poder corroborar que la aplicación estaba siendo intuitiva y amigable con lusuario. Se observaron puntos de mejora con cada una de ellas.
+Se realizaron diferentes pruebas de usabilidad a través de la plataforma de maze para poder corroborar que la aplicación estaba siendo intuitiva y amigable con los usuarios. Se observaron puntos de mejora con cada una de ellas.
 
 ## 5. Vista de la interfaz
 
@@ -49,9 +48,7 @@ Se realizaron diferentes pruebas de usabilidad a través de la plataforma de maz
 
 <img width="800" alt="Timeline vista" src="https://user-images.githubusercontent.com/97538997/179098706-e77868c3-934d-4554-83da-eade5a8a6b1a.png">
 
-## 6. Deploy
-
-## 7. Creadoras
+## 6. Creadoras
 
 | Developers | Contact |
 | ------------------- | ------------------- |
